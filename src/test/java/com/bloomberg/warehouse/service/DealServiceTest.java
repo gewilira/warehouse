@@ -15,11 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.bloomberg.warehouse.exceptions.FileAlreadyUploadedException;
-import com.bloomberg.warehouse.persistence.entities.UploadSummary;
 import com.bloomberg.warehouse.service.dto.DealFileResponse;
 
 @RunWith(SpringRunner.class)

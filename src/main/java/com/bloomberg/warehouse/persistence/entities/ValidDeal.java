@@ -1,7 +1,5 @@
 package com.bloomberg.warehouse.persistence.entities;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

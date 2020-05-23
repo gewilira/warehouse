@@ -11,7 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bloomberg.warehouse.persistence.entities.InvalidDeal;
-import com.bloomberg.warehouse.persistence.entities.UploadSummary;
 import com.bloomberg.warehouse.persistence.repository.InvalidDealRepository;
 
 @RunWith(SpringRunner.class)

@@ -3,28 +3,46 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Bloomberg Warehouse</title>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-<form method="POST" th:action="@{/upload}" enctype="multipart/form-data">
-    <div class="form-group mt-3">
-        <h1><label for="file">Select a CSV file</label></h1><br>
-        <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Upload Deal</button>
-   <div class="container py-5">
-    <div class="row">
-        <div class="col-10 mx-auto">
-            <h1>File Upload Status</h1>
-            <p>FILE : <span th:text="${fileName}">0</span></p>
-			<p>DURATION : <span th:text="${duration}">0</span></p>
-			<p>SUCCESS : <span th:text="${success}">0</span></p>
-			<p>FAILED : <span th:text="${failed}">0</span></p>
-			<p>TOTAL : <span th:text="${total}">0</span></p>
-			<p>MESSAGE : <span th:text="${message}">0</span></p>
+<h1 align="center">Bloomberg Warehouse</h1>
+<div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Upload Files</strong> <small>Bloomberg files upload</small></div>
+        <div class="panel-body">
+
+          <!-- Standar Form -->
+          <h4>Select files from your computer</h4>
+          <form action="/upload" method="post" enctype="multipart/form-data" id="js-upload-form">
+            <div class="form-inline">
+              <div class="form-group">
+                <input type="file" id="file" name="file" accept=".csv">
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+            </div>
+          </form>
+
+
+          <!-- Upload Finished -->
+          <div class="js-upload-finished">
+            <h3>Processed files</h3>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right" th:text="${fileName}" ></span>FILE</a>
+              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right" th:text="${duration}">DURATION</span>DURATION</a>
+              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right" th:text="${success}">SUCCESS</span>SUCCESS</a>
+              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right" th:text="${failed}">FAILED</span>FAILED</a>
+              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right" th:text="${total}">TOTAL</span>TOTAL</a>
+              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right" th:text="${message}">MESSAGE</span>MESSAGE</a>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
-</form>
+      </div>
+    </div> <!-- /container -->
 </body>
+<script type="text/javascript">
+
+</script>
 </html>
