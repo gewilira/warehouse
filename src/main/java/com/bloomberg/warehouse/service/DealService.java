@@ -70,10 +70,8 @@ public class DealService implements IFileService {
 					.fileName(file.getOriginalFilename()).build();
 		}).collect(Collectors.toList());
 
-		batchPersistService.saveData(validDeals,
-				validDealRepository.findTopByOrderByIdDesc().map(ValidDeal::getId).orElse(0L));
-		batchPersistService.saveData(invalidDeals,
-				invalidDealRepository.findTopByOrderByIdDesc().map(InvalidDeal::getId).orElse(0L));
+		batchPersistService.saveData(validDeals, validDealRepository.findTopByOrderByIdDesc().map(ValidDeal::getId).orElse(0L));
+		batchPersistService.saveData(invalidDeals, invalidDealRepository.findTopByOrderByIdDesc().map(InvalidDeal::getId).orElse(0L));
 
 		UploadSummary uploadSummary = UploadSummary.builder()
 				.id(uploadSummaryRepository.findTopByOrderByIdDesc().map(UploadSummary::getId).orElse(1L) + 1)

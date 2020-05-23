@@ -39,10 +39,10 @@ public class DealController {
 
 		return "upload-status";
 	}
-	
-	@ExceptionHandler({FileAlreadyUploadedException.class, FileCannotBeParseException.class, FileNotFoundException.class})
+
+	@ExceptionHandler({ FileAlreadyUploadedException.class, FileCannotBeParseException.class,
+			FileNotFoundException.class })
 	public ModelAndView handleException(RuntimeException ex) {
-		// Do something additional if required
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("upload-status");
 		modelAndView.addObject("message", ex.getMessage());
