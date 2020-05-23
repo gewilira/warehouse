@@ -1,6 +1,7 @@
 package com.bloomberg.warehouse.service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -16,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bloomberg.warehouse.exceptions.FileAlreadyUploadedException;
 import com.bloomberg.warehouse.exceptions.FileCannotBeParseException;
-import com.bloomberg.warehouse.exceptions.FileNotFoundException;
 import com.bloomberg.warehouse.persistence.entities.InvalidDeal;
 import com.bloomberg.warehouse.persistence.entities.UploadSummary;
 import com.bloomberg.warehouse.persistence.entities.ValidDeal;
@@ -31,6 +31,8 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 @Service
 public class DealService implements IFileService {
+	
+	private static final String SUCCESS_MSG = "File uploaded successfully";
 
 	private final UploadSummaryRepository uploadSummaryRepository;
 	private final BatchPersistService batchPersistService;
@@ -82,14 +84,11 @@ public class DealService implements IFileService {
 
 		return DealFileResponse.builder().duration(uploadSummary.getDuration()).success(uploadSummary.getSuccess())
 				.failed(uploadSummary.getFailed()).filename(uploadSummary.getFileName())
-				.message("File uploaded successfully").build();
+				.message(SUCCESS_MSG).build();
 	}
 
 	@Override
 	public void validateFile(MultipartFile file) {
-		if (file.isEmpty()) {
-			throw new FileNotFoundException();
-		}
 
 		if (uploadSummaryRepository.findByFileName(file.getOriginalFilename()).isPresent()) {
 			throw new FileAlreadyUploadedException();

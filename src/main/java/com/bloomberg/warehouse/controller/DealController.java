@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bloomberg.warehouse.exceptions.FileAlreadyUploadedException;
 import com.bloomberg.warehouse.exceptions.FileCannotBeParseException;
-import com.bloomberg.warehouse.exceptions.FileNotFoundException;
 import com.bloomberg.warehouse.service.DealService;
 import com.bloomberg.warehouse.service.dto.DealFileResponse;
 
@@ -27,7 +26,7 @@ public class DealController {
 		return "upload";
 	}
 
-	@PostMapping("/upload-deal")
+	@PostMapping("/upload")
 	public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model) {
 		DealFileResponse fileResponse = dealService.processUploadFile(file);
 		model.addAttribute("fileName", fileResponse.getFilename());
@@ -36,15 +35,13 @@ public class DealController {
 		model.addAttribute("failed", fileResponse.getFailed());
 		model.addAttribute("total", fileResponse.getTotal());
 		model.addAttribute("message", fileResponse.getMessage());
-
-		return "upload-status";
+		return "upload";
 	}
 
-	@ExceptionHandler({ FileAlreadyUploadedException.class, FileCannotBeParseException.class,
-			FileNotFoundException.class })
+	@ExceptionHandler({ FileAlreadyUploadedException.class, FileCannotBeParseException.class })
 	public ModelAndView handleException(RuntimeException ex) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("upload-status");
+		modelAndView.setViewName("upload");
 		modelAndView.addObject("message", ex.getMessage());
 		return modelAndView;
 	}
