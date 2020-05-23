@@ -20,19 +20,13 @@ import lombok.ToString;
 @ToString(exclude = "id")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = false)
-public class ValidDeal implements IDeal {
+public class UploadSummary {
 
 	@Id
 	private Long id;
-	private String fromCurrencyCode;
-	private String toCurrencyCode;
-	private String dealDate;
-	private String amount;
 	private String fileName;
-
-	@Override
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	private String duration;
+	private Integer success;
+	private Integer failed;
+	private Integer total;
 }
